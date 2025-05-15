@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#25D366">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚔</text></svg>">
+    <title>PMBA - Formulário de Assunção de Serviço</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌵PMBA - CPE - CIPGd-FSA🌵</h1>
+            <h2>🚔 - Setor de Transporte</h2>
+        </div>
+        
+        <h3>Assunção de Serviço: Sede da CIPGd</h3>
+        
+        <div id="formContainer">
+            <div class="form-row">
+                <span class="fixed-text">Data:</span>
+                <input type="date" id="dataInput" required>
+            </div>
+            
+            <div class="form-row">
+                <span class="fixed-text">Horário:</span>
+                <input type="time" id="horarioInput" required>
+            </div>
+            
+            <div class="form-row">
+                <span class="fixed-text">Carga de Viatura</span>                
+            </div>
+            
+            <div class="form-row">
+                <span class="fixed-text">Atalaia:</span>
+                <select id="atalaiaInput">
+                    <option value="7.2201 (RPD 9E74)">7.2201 (RPD-9E74)</option>
+                    <option value="7.2202 (SJY-4A90)">7.2202 (SJY-4A90)</option>
+                    <option value="7.2203 (xxx-xxxx)">7.2203 (XXX-XXXX)</option>
+                    <option value="7.2204 (PKV-5612)">7.2204 (PKV-5612)</option>
+                </select>
+            </div>
+            
+            <div class="form-row">
+                <span class="fixed-text">Km Assunção Serviço:</span>
+                <input type="text" id="kmInput" placeholder="Digite a quilometragem" required>
+            </div>
+            
+            <div class="form-row">
+                <span class="fixed-text">Nível óleo:</span>
+                <select id="oleoInput">
+                    <option value="OK">OK</option>
+                    <option value="BAIXO">BAIXO</option>
+                    <option value="NECESSÁRIO COMPLETAR">NECESSÁRIO COMPLETAR</option>
+                </select>
+            </div>
+            
+            <div class="form-row">
+                <span class="fixed-text">Nível água:</span>
+                <select id="aguaInput">
+                    <option value="OK">OK</option>
+                    <option value="BAIXO">BAIXO</option>
+                </select>
+            </div>
+            
+            <div class="form-row">
+                <span class="fixed-text">Nível Comb:</span>
+                <select id="combInput">
+                    <option value="TANQUE CHEIO">TANQUE CHEIO</option>
+                    <option value="3/4">3/4</option>
+                    <option value="1/2">1/2</option>
+                    <option value="RESERVA">RESERVA</option>
+                </select>
+            </div>
+            
+            <div class="form-row">
+                <span class="fixed-text">Rádio:</span>
+                <select id="radioInput">
+                    <option value="OK">OK</option>
+                    <option value="COM DEFEITO">COM DEFEITO</option>
+                </select>
+            </div>
+            
+            <div class="form-row">
+                <span class="fixed-text">Sirene:</span>
+                <select id="sireneInput">
+                    <option value="OK">OK</option>
+                    <option value="COM DEFEITO">COM DEFEITO</option>
+                </select>
+            </div>
+            
+            <div class="form-row">
+                <span class="fixed-text">Pneus:</span>
+                <select id="pneusInput">
+                    <option value="OK">OK</option>
+                    <option value="COM BAIXA CALIBRAGEM">COM BAIXA CALIBRAGEM</option>
+                </select>
+            </div>
+            
+            <div class="form-row">
+                <span class="fixed-text">Motorista:</span>
+                <input type="text" id="motoristaInput" placeholder="SD PM FULANO" required>
+            </div>
+            
+            <div style="margin-top: 15px;">
+                <div class="fixed-text">Observações:</div>
+                <textarea id="observacoesInput" placeholder="Digite as observações..."></textarea>
+            </div>
+
+            <div class="footer">
+            PMBA, uma força a serviço do cidadão
+        </div>
+            
+            <button id="generateButton">Gerar Mensagem e Copiar</button>
+        </div>
+        
+        <div class="instructions" id="instructions" style="display: none;"></div>        
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
