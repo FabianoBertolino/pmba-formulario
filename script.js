@@ -58,7 +58,7 @@ document.getElementById('generateButton').addEventListener('click', async functi
     const comb = document.getElementById('combInput').value;
     const radio = document.getElementById('radioInput').value;
     const sirene = document.getElementById('sireneInput').value;
-    const pneus/step = document.getElementById('pneusInput').value;
+    const pneus = document.getElementById('pneusInput').value;
     const motorista = document.getElementById('motoristaInput').value;
     const observacoes = document.getElementById('observacoesInput').value;
     
