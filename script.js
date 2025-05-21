@@ -1,29 +1,45 @@
+// Função utilitária para dois dígitos
+const pad2 = n => n.toString().padStart(2, '0');
 
+// Elementos do formulário (pegos uma única vez)
+const elData = document.getElementById('dataInput');
+const elHorario = document.getElementById('horarioInput');
+const elAtalaia = document.getElementById('atalaiaInput');
+const elKm = document.getElementById('kmInput');
+const elOleo = document.getElementById('oleoInput');
+const elAgua = document.getElementById('aguaInput');
+const elComb = document.getElementById('combInput');
+const elRadio = document.getElementById('radioInput');
+const elSirene = document.getElementById('sireneInput');
+const elPneus = document.getElementById('pneusInput');
+const elMotorista = document.getElementById('motoristaInput');
+const elObs = document.getElementById('observacoesInput');
+const elBtn = document.getElementById('generateButton');
+const elInstructions = document.getElementById('instructions');
 
-// Função para formatar hora com dois dígitos
-function padTo2Digits(num) {
-    return num.toString().padStart(2, '0');
-}
-
-// Configurar data e hora atuais como padrão
-document.addEventListener('DOMContentLoaded', function() {
-    const today = new Date();
-    
-    // Formatar data (YYYY-MM-DD)
-    const yyyy = today.getFullYear();
-    const mm = String(today.getMonth() + 1).padStart(2, '0');
-    const dd = String(today.getDate()).padStart(2, '0');
-    document.getElementById('dataInput').value = `${yyyy}-${mm}-${dd}`;
-    
-    // Formatar hora (HH:MM)
-    const horas = padTo2Digits(today.getHours());
-    const minutos = padTo2Digits(today.getMinutes());
-    document.getElementById('horarioInput').value = `${horas}:${minutos}`;
+// Define data e hora ao carregar
+document.addEventListener('DOMContentLoaded', () => {
+    const now = new Date();
+    elData.value = `${now.getFullYear()}-${pad2(now.getMonth() + 1)}-${pad2(now.getDate())}`;
+    elHorario.value = `${pad2(now.getHours())}:${pad2(now.getMinutes())}`;
 });
 
+function validarCamposObrigatorios() {
+    if (!elKm.value.trim()) {
+        alert('Por favor, preencha o Km da Viatura');
+        elKm.focus();
+        return false;
+    }
+    if (!elMotorista.value.trim()) {
+        alert('Por favor, preencha o nome do motorista');
+        elMotorista.focus();
+        return false;
+    }
+    return true;
+}
+
 function showSuccessMessage() {
-    const instructions = document.getElementById('instructions');
-    instructions.innerHTML = `
+    elInstructions.innerHTML = `
         <div style="text-align: center;">
             <div style="font-size: 24px; color: #25D366;">✔️ Mensagem copiada com sucesso!</div>
             <div style="margin-top: 15px; font-size: 18px;">📲 Agora cole no grupo do WhatsApp</div>
@@ -32,72 +48,44 @@ function showSuccessMessage() {
             </div>
         </div>
     `;
-    instructions.style.display = 'block';
-    instructions.scrollIntoView({ behavior: 'smooth' });
+    elInstructions.style.display = 'block';
+    elInstructions.scrollIntoView({ behavior: 'smooth' });
 }
 
-document.getElementById('generateButton').addEventListener('click', async function() {
-    // Validação do motorista e km
-     if (!document.getElementById('kmInput').value.trim()) {
-        alert('Por favor, preencha o Km da Viatura');
-        return;
-    }
+elBtn.addEventListener('click', async function() {
+    if (!validarCamposObrigatorios()) return;
 
-    if (!document.getElementById('motoristaInput').value.trim()) {
-        alert('Por favor, preencha o nome do motorista');
-        return;
-    }
+    // Formata data para DD/MM/YYYY
+    const [yyyy, mm, dd] = elData.value.split('-');
+    const dataFormatada = `${dd}/${mm}/${yyyy}`;
 
-       // Obter valores dos campos
-    const data = document.getElementById('dataInput').value;
-    const horario = document.getElementById('horarioInput').value;
-    const atalaia = document.getElementById('atalaiaInput').value;
-    const km = document.getElementById('kmInput').value || "Não informado";
-    const oleo = document.getElementById('oleoInput').value;
-    const agua = document.getElementById('aguaInput').value;
-    const comb = document.getElementById('combInput').value;
-    const radio = document.getElementById('radioInput').value;
-    const sirene = document.getElementById('sireneInput').value;
-    const pneus = document.getElementById('pneusInput').value;
-    const motorista = document.getElementById('motoristaInput').value;
-    const observacoes = document.getElementById('observacoesInput').value;
-    
-    // Formatar data
-    let dataFormatada = data;
-    if(data.match(/^\d{4}-\d{2}-\d{2}$/)) {
-        const [yyyy, mm, dd] = data.split('-');
-        dataFormatada = `${dd}/${mm}/${yyyy}`;
-    }
-    
-    // Criar mensagem formatada
     const mensagem = `🌵*PMBA - CPE - CIPGd-FSA*🌵
-      
+
 🚔 - *Setor de Transporte*
 
 *Assunção de Serviço*: Sede da CIPGd
 *Data:* ${dataFormatada}
-*Horário:* ${horario}
-*Atalaia:* ${atalaia}
-*Km Assunção Serviço:* ${km}
-*Nível óleo:* ${oleo}
-*Nível água:* ${agua}
-*Nível Comb:* ${comb}
-*Rádio:* ${radio}
-*Sirene:* ${sirene}
-*Pneus/Step:* ${pneus}
-*Motorista:* ${motorista}
+*Horário:* ${elHorario.value}
+*Atalaia:* ${elAtalaia.value}
+*Km Assunção Serviço:* ${elKm.value || "Não informado"}
+*Nível óleo:* ${elOleo.value}
+*Nível água:* ${elAgua.value}
+*Nível Comb:* ${elComb.value}
+*Rádio:* ${elRadio.value}
+*Sirene:* ${elSirene.value}
+*Pneus/Step:* ${elPneus.value}
+*Motorista:* ${elMotorista.value}
 
 *Observações*: 
-${observacoes.split('\n').map(line => line.trim() ? '- ' + line : '').join('\n')}
+${elObs.value.split('\n').map(l => l.trim() ? '- ' + l : '').join('\n')}
 
 *PMBA, _uma força a serviço do cidadão_*`;
 
     try {
-        // Tentativa de cópia moderna
         await navigator.clipboard.writeText(mensagem);
         showSuccessMessage();
-    } catch (err) {
-        // Fallback para cópia tradicional
+    } catch {
+        // Fallback
         const textarea = document.createElement('textarea');
         textarea.value = mensagem;
         document.body.appendChild(textarea);
