@@ -38,17 +38,17 @@ function showSuccessMessage() {
 
 document.getElementById('generateButton').addEventListener('click', async function() {
     // Validação do motorista e km
+     if (!document.getElementById('kmInput').value.trim()) {
+        alert('Por favor, preencha o Km da Viatura');
+        return;
+    }
+
     if (!document.getElementById('motoristaInput').value.trim()) {
         alert('Por favor, preencha o nome do motorista');
         return;
     }
 
-    if (!document.getElementById('kmInput').value.trim()) {
-        alert('Por favor, preencha o Km da Viatura');
-        return;
-    }
-
-    // Obter valores dos campos
+       // Obter valores dos campos
     const data = document.getElementById('dataInput').value;
     const horario = document.getElementById('horarioInput').value;
     const atalaia = document.getElementById('atalaiaInput').value;
