@@ -38,7 +38,7 @@ function showSuccessMessage() {
 
 document.getElementById('generateButton').addEventListener('click', async function() {
     // Validação do motorista e km
-        if (!document.getElementById('kmInput').value.trim()) {
+    if (!document.getElementById('kmInput').value.trim()) {
         alert('Por favor, preencha o Km da Viatura');
         return;
     }
