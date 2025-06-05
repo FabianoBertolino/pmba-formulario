@@ -38,13 +38,13 @@ function showSuccessMessage() {
 
 document.getElementById('generateButton').addEventListener('click', async function() {
     // Validação do motorista e km
-    if (!document.getElementById('motoristaInput').value.trim()) {
-        alert('Por favor, preencha o nome do motorista');
+        if (!document.getElementById('kmInput').value.trim()) {
+        alert('Por favor, preencha o Km da Viatura');
         return;
     }
 
-    if (!document.getElementById('kmInput').value.trim()) {
-        alert('Por favor, preencha o Km da Viatura');
+    if (!document.getElementById('motoristaInput').value.trim()) {
+        alert('Por favor, preencha o nome do motorista');
         return;
     }
 
